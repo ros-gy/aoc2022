@@ -10,6 +10,8 @@ if __name__ == '__main__':
             calorie_list.append(temp_cal)
             temp_cal = 0
 
+    file.close()
+
     greatest = 0
     for y in calorie_list:
         if y > greatest:
