@@ -1,8 +1,5 @@
 # Day 5 - gy
 
-def get_top(stacks, number):
-    return number
-
 if __name__ == '__main__':
 
     file = open("d5_input.txt", "r")
@@ -49,8 +46,9 @@ if __name__ == '__main__':
         for k in range(number):
             t_copy = cols[source].pop(-1)
             temp_hold.append(t_copy)
-            # cols[destination].append(t_copy)
+            # cols[destination].append(t_copy) uncomment to get pt1
 
+        # comment to get pt 1
         for u in range(len(temp_hold)):
             cols[destination].append(temp_hold.pop(-1))
 
