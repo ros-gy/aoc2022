@@ -1,4 +1,5 @@
 # Day 11 - gy
+import sys
 
 m0_items = [54, 82, 90, 88, 86, 54]
 m1_items = [91, 65]
@@ -12,24 +13,26 @@ m7_items = [79]
 divider = [11, 5, 7, 2, 17, 13, 3, 19]
 inspections = [0, 0, 0, 0, 0, 0, 0, 0]
 
+supermodulo = 11*5*7*2*17*13*3*19  # yes I used hints
+
 
 def operation(m_id, worry):
     if m_id == 0:
-        return worry * 7
+        return int(worry * 7)
     elif m_id == 1:
-        return worry * 13
+        return int(worry * 13)
     elif m_id == 2:
-        return worry + 1
+        return int(worry + 1)
     elif m_id == 3:
-        return worry * worry
+        return int(pow(worry, 2))
     elif m_id == 4:
-        return worry + 7
+        return int(worry + 7)
     elif m_id == 5:
-        return worry + 6
+        return int(worry + 6)
     elif m_id == 6:
-        return worry + 4
+        return int(worry + 4)
     elif m_id == 7:
-        return worry + 8
+        return int(worry + 8)
 
 
 def test_worry(m_id, worry):
@@ -75,6 +78,10 @@ def test_worry(m_id, worry):
             return False
 
 
+def relief(worry):
+    return worry % supermodulo  # yes I used hints
+
+
 def inspect(m_id):
     global m0_items
     global m1_items
@@ -89,7 +96,7 @@ def inspect(m_id):
     if m_id == 0:
         for item in m0_items:
             inspections[m_id] += 1
-            temp = operation(m_id, item)
+            temp = relief(operation(m_id, item))
             if test_worry(m_id, temp):
                 m2_items.append(temp)
             else:
@@ -98,7 +105,7 @@ def inspect(m_id):
     elif m_id == 1:
         for item in m1_items:
             inspections[m_id] += 1
-            temp = operation(m_id, item)
+            temp = relief(operation(m_id, item))
             if test_worry(m_id, temp):
                 m7_items.append(temp)
             else:
@@ -107,7 +114,7 @@ def inspect(m_id):
     elif m_id == 2:
         for item in m2_items:
             inspections[m_id] += 1
-            temp = operation(m_id, item)
+            temp = relief(operation(m_id, item))
             if test_worry(m_id, temp):
                 m1_items.append(temp)
             else:
@@ -116,7 +123,7 @@ def inspect(m_id):
     elif m_id == 3:
         for item in m3_items:
             inspections[m_id] += 1
-            temp = operation(m_id, item)
+            temp = relief(operation(m_id, item))
             if test_worry(m_id, temp):
                 m0_items.append(temp)
             else:
@@ -125,7 +132,7 @@ def inspect(m_id):
     elif m_id == 4:
         for item in m4_items:
             inspections[m_id] += 1
-            temp = operation(m_id, item)
+            temp = relief(operation(m_id, item))
             if test_worry(m_id, temp):
                 m3_items.append(temp)
             else:
@@ -134,7 +141,7 @@ def inspect(m_id):
     elif m_id == 5:
         for item in m5_items:
             inspections[m_id] += 1
-            temp = operation(m_id, item)
+            temp = relief(operation(m_id, item))
             if test_worry(m_id, temp):
                 m3_items.append(temp)
             else:
@@ -143,7 +150,7 @@ def inspect(m_id):
     elif m_id == 6:
         for item in m6_items:
             inspections[m_id] += 1
-            temp = operation(m_id, item)
+            temp = relief(operation(m_id, item))
             if test_worry(m_id, temp):
                 m1_items.append(temp)
             else:
@@ -152,7 +159,7 @@ def inspect(m_id):
     elif m_id == 7:
         for item in m7_items:
             inspections[m_id] += 1
-            temp = operation(m_id, item)
+            temp = relief(operation(m_id, item))
             if test_worry(m_id, temp):
                 m4_items.append(temp)
             else:
@@ -163,7 +170,7 @@ def inspect(m_id):
 if __name__ == '__main__':
 
     for i in range(10000):
-        print("Round", i)
+        # print("Round", i)
         for k in range(8):
             inspect(k)
 
@@ -172,4 +179,3 @@ if __name__ == '__main__':
     inspections.sort(reverse=True)
     print(inspections[0], inspections[1])
     print("monkey business", inspections[0]*inspections[1])
-
